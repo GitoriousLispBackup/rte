@@ -1,0 +1,95 @@
+\documentclass[landscape]{article}
+\usepackage[margin=1in]{geometry}
+
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{verbatim}
+
+\begin{comment}
+
+:Title: Simple flow chart
+:Tags: Diagrams
+
+With PGF/TikZ you can draw flow charts with relative ease. This flow chart from [1]_ outlines an algorithm for identifying the parameters of an autonomous underwater vehicle model. 
+
+Note that relative node placement has been used to avoid placing nodes explicitly. This feature was introduced in PGF/TikZ >= 1.09.
+
+.. [1] Bossley, K.; Brown, M. & Harris, C. Neurofuzzy identification of an autonomous underwater vehicle `International Journal of Systems Science`, 1999, 30, 901-913 
+
+\end{comment}
+
+\begin{document}
+\pagestyle{empty}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{subblock} = [rectangle, draw, fill=green!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{line} = [draw, -latex']
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+\begin{tikzpicture}[node distance = 1.25in, auto]
+  % Place nodes
+  %%%% Headline flowchart
+  \node [cloud] (dataset) {data set};
+  \node [block, below of=dataset] (extract) {extract t-h pair};
+  \node [block, right of=extract] (normalize) {normalize input};
+  \node [decision, right of=normalize, node distance=2in] (parse) {parse};
+  \node [decision, right of=parse, node distance=3.5in] (text) {text?};
+  \node [block, above right of=text] (assert) {assert all};
+  \node [block, below right of=text] (question) {question h};
+  \node [block, above right of=question] (return) {return entailing sentences};
+  
+  %%%% How to normalize input
+  \node [subblock, above of=normalize, node distance=1in] (split) {split t into sentences};
+  \node [subblock, above of=split, node distance=1in] (vocab) {add unknown words to lexicon};
+
+  %%%% How to parse input
+  \node [subblock, below of=parse, node distance=1in] (dependency) %
+                                   {stanford $\rightarrow$ dependency};
+  \node [subblock, left of=dependency] (lkb) {lkb $\rightarrow$ mrs};
+  \node [subblock, right of=dependency] (tree) %
+                                         {stanford $\rightarrow$ tree};
+  \node [subblock, below of=dependency, node distance=1in] (entities) %
+                                        {extract entities and align with KB};
+  \node [subblock, below of=entities] (sfy) %
+                                      {nativize the linguistic representation};
+
+  % Draw edges
+  %%%% Headline flowchart
+  \path [line] (dataset) -- (extract);
+  \path [line] (extract) -- (normalize);
+  \path [line] (text) -- node {yes} (assert);
+  \path [line] (text) -- node {no}(question);
+  \path [line] (assert) -| (parse);
+  \path [line] (question) -- (return);
+
+  %%%% How to normalize input
+  %%\path [line] (normalize) -- (parse);
+  \path [line] (normalize) -- (split);
+  \path [line] (split) -- (vocab);
+  \path [line] (vocab) -- (parse);
+  
+  %%%% How to parse input
+  %%\path [line] (parse) -- (text);
+  \path [line] (sfy) -| (text);
+  \path [line] (parse) -- (lkb);
+  \path [line] (parse) -- (dependency);
+  \path [line] (parse) -- (tree);
+  \path [line] (lkb) -- (entities);
+  \path [line] (dependency) -- (entities);
+  \path [line] (tree) -- (entities);
+  \path [line] (entities) -- (sfy);
+
+\end{tikzpicture}
+
+\end{document}
+

@@ -1,0 +1,227 @@
+\documentclass[landscape]{article}
+\usepackage[margin=1in]{geometry}
+
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{verbatim,multicol}
+
+\newcommand{\mn}[1]{%
+  \node [cloud] (#1) {#1};%
+}
+\newcommand{\cfn}[2]{%
+  \node [block] (#1) {#2};%
+}
+
+\begin{document}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{subblock} = [rectangle, draw, fill=green!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{line} = [draw, -latex']
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+John loved his wife, Kim, and was absolutely obsessed with his little daughter Jill.
+
+\begin{verbatim}
+{h1:prpstn_m(e2, h3, u4, u5), 
+h6:proper_q(x8:-, h7, h9), 
+h10:named(x8, "john"), 
+h11:_love_v_1(e12, x8, x13:-), 
+h14:appos(e16, x13, x15:-), 
+h17:def_explicit_q(x13, h19, h18), 
+h14:poss(e21, x13, x20:STD_PRON), 
+h22:pronoun_q(x20, h23, h24), 
+h25:pron(x20), 
+h14:_wife_n_of(x13, i26), 
+h27:proper_q(x15, h28, h29), 
+h30:named(x15, "kim"), 
+h31:_and_c(e2, h11, e12, h33, e32), 
+h33:_absolute_a_scop(e34, h35), 
+h36:_obsessed_a_with(e32, x8, x37:-), 
+h38:appos(e40, x37, x39:-), 
+h41:def_explicit_q(x37, h43, h42), 
+h38:poss(e45, x37, x44:STD_PRON), 
+h46:pronoun_q(x44, h47, h48), 
+h49:pron(x44), 
+h38:_little_a_1(e50, x37), 
+h38:_daughter_n_1(x37), 
+h51:proper_q(x39, h52, h53), 
+h54:named(x39, "jill")}, 
+{h3 qeq h31, 
+h7 qeq h10, 
+h19 qeq h14, 
+h23 qeq h25, 
+h28 qeq h30, 
+h35 qeq h36, 
+h43 qeq h38, 
+h47 qeq h49, 
+h52 qeq h54}> 
+\end{verbatim}
+
+
+\begin{verbatim}
+h6:proper_q(x8:-, h7, h9), 
+h10:named(x8, "john"), 
+
+h11:_love_v_1(e12, x8, x13:-), 
+
+h22:pronoun_q(x20, h23, h24), 
+h25:pron(x20), 
+
+h14:_wife_n_of(x13, i26), 
+
+h27:proper_q(x15, h28, h29), 
+h30:named(x15, "kim"), 
+
+h46:pronoun_q(x44, h47, h48), 
+h49:pron(x44), 
+
+h51:proper_q(x39, h52, h53), 
+h54:named(x39, "jill")}, 
+\end{verbatim}
+
+
+\begin{tikzpicture}[node distance = 1.25in, auto]
+
+  \cfn{h10}{named}
+  \node [cloud,below left of=h10](x8){x8};
+  \node [cloud,below right of=h10](john){john};
+  \path [line] (h10) -- (x8);
+  \path [line] (h10) -- (john);
+
+\end{tikzpicture}
+
+\pagebreak
+
+John was married to Kim.
+\begin{enumerate}
+\item married$_{adj}$
+\begin{verbatim}
+<h1,e2, 
+{h1:prpstn_m(e2, h3, u4, u5), 
+h6:proper_q(x8:-, h7, h9), 
+h10:named(x8, "john"), 
+h11:_married_a_1(e2, x8), 
+h11:_to_p(e12, e2, x13:-), 
+h14:proper_q(x13, h15, h16), 
+h17:named(x13, "kim")}, 
+{h3 qeq h11, 
+h7 qeq h10, 
+h15 qeq h17}> 
+\end{verbatim}
+
+\item married$_{verb}$
+\begin{verbatim} 
+<h1,e2, 
+{h1:prpstn_m(e2, h3, x4:-, u5), 
+h6:proper_q(x4, h7, h8), 
+h9:named(x4, "john"), 
+h10:_marry_v_1(e2, u11, x4), 
+h10:_to_p(e12, e2, x13:-), 
+h14:proper_q(x13, h15, h16), 
+h17:named(x13, "kim")}, 
+{h3 qeq h10, 
+h7 qeq h9, 
+h15 qeq h17}> 
+\end{verbatim}
+\end{enumerate}
+
+
+\begin{tikzpicture}[node distance = 1.25in, auto]
+
+\end{tikzpicture}
+
+\pagebreak
+
+\begin{multicols}{2}
+John loved his wife, Kim, and was absolutely \\
+obsessed with his little daughter Jill.
+
+\begin{verbatim}
+{h1:prpstn_m(e2, h3, u4, u5), 
+h6:proper_q(x8:-, h7, h9), 
+h10:named(x8, "john"), 
+h11:_love_v_1(e12, x8, x13:-), 
+h14:appos(e16, x13, x15:-), 
+h17:def_explicit_q(x13, h19, h18), 
+h14:poss(e21, x13, x20:STD_PRON), 
+h22:pronoun_q(x20, h23, h24), 
+h25:pron(x20), 
+h14:_wife_n_of(x13, i26), 
+h27:proper_q(x15, h28, h29), 
+h30:named(x15, "kim"), 
+h31:_and_c(e2, h11, e12, h33, e32), 
+h33:_absolute_a_scop(e34, h35), 
+h36:_obsessed_a_with(e32, x8, x37:-), 
+h38:appos(e40, x37, x39:-), 
+h41:def_explicit_q(x37, h43, h42), 
+h38:poss(e45, x37, x44:STD_PRON), 
+h46:pronoun_q(x44, h47, h48), 
+h49:pron(x44), 
+h38:_little_a_1(e50, x37), 
+h38:_daughter_n_1(x37), 
+h51:proper_q(x39, h52, h53), 
+h54:named(x39, "jill")}, 
+{h3 qeq h31, 
+h7 qeq h10, 
+h19 qeq h14, 
+h23 qeq h25, 
+h28 qeq h30, 
+h35 qeq h36, 
+h43 qeq h38, 
+h47 qeq h49, 
+h52 qeq h54}> 
+\end{verbatim}
+
+\columnbreak
+
+John was married to Kim.
+\begin{enumerate}
+\item married$_{adj}$
+\begin{verbatim}
+<h1,e2, 
+{h1:prpstn_m(e2, h3, u4, u5), 
+h6:proper_q(x8:-, h7, h9), 
+h10:named(x8, "john"), 
+h11:_married_a_1(e2, x8), 
+h11:_to_p(e12, e2, x13:-), 
+h14:proper_q(x13, h15, h16), 
+h17:named(x13, "kim")}, 
+{h3 qeq h11, 
+h7 qeq h10, 
+h15 qeq h17}> 
+\end{verbatim}
+
+\item married$_{verb}$
+\begin{verbatim} 
+<h1,e2, 
+{h1:prpstn_m(e2, h3, x4:-, u5), 
+h6:proper_q(x4, h7, h8), 
+h9:named(x4, "john"), 
+h10:_marry_v_1(e2, u11, x4), 
+h10:_to_p(e12, e2, x13:-), 
+h14:proper_q(x13, h15, h16), 
+h17:named(x13, "kim")}, 
+{h3 qeq h10, 
+h7 qeq h9, 
+h15 qeq h17}> 
+\end{verbatim}
+\end{enumerate}
+
+\end{multicols}
+
+\end{document}
