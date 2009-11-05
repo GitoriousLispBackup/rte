@@ -4,7 +4,6 @@
 %%%% Beamer settings
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\setbeameroption{show notes}
 \setbeameroption{hide notes}
 
 \mode<presentation>
@@ -14,6 +13,33 @@
   \setbeamercovered{transparent}
  	
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% End Beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{gb4e}
+\usepackage[lsalike,round]{natbib}
+\usepackage[english]{babel}
+\usepackage{times}
+
+\title[LKB, Sfy, and Textual Entailment]
+{Textual Entailment with SNePS}
+
+\author[Heider, Petrova, Prentice, Petrova, Wetta]
+{Paul~Heider \and Yana~Petrova \and Mike~Prentice \and Roelant~Ossewaarde \and Andy~Wetta\\
+\{pmheider, petrova3, mjp44, rao3, acwetta\}@buffalo.edu}
+
+\institute[University at Buffalo]
+{
+	SNeRG and SNaLPS Research Groups\\
+	Department of Computer Science\\
+  Department of Linguistics\\
+  University at Buffalo}
+
+\date{Fall 2009}
+
+\subject{Textual Entailment with SNePS}
 
 \AtBeginSection[]
 {
@@ -25,22 +51,16 @@
 \tableofcontents[currentsection]} %%,currentsubsection]}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%% End Beamer settings
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{gb4e}
-\usepackage[lsalike,round]{natbib}
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
 
 \newcommand{\rte}{{RTE}}
 \newcommand{\snalps}{{SN}a{LPS}}
 \newcommand{\sneps}{{SN}e{PS}}
-
-% Slides for SNaLPS presentation Nov. 10.
-% Done in beamer
-\title{\snalps}
-\author{Andy, Yana, Roelant, Mike, \& Paul}
-
 
 \begin{document}
 
@@ -145,5 +165,6 @@
 %        - Show mrs representation of t-h pair
 %        - Demo each step of the RTE process above
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \end{document}
