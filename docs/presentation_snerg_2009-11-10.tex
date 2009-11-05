@@ -1,0 +1,149 @@
+\documentclass{beamer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\setbeameroption{show notes}
+\setbeameroption{hide notes}
+
+\mode<presentation>
+{
+  \usetheme{Pittsburgh}
+
+  \setbeamercovered{transparent}
+ 	
+}
+
+\AtBeginSection[]
+{
+\frame{
+	\thispagestyle{empty}
+	
+\vspace*{0.78cm}
+
+\tableofcontents[currentsection]} %%,currentsubsection]}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% End Beamer settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{gb4e}
+\usepackage[lsalike,round]{natbib}
+
+\newcommand{\rte}{{RTE}}
+\newcommand{\snalps}{{SN}a{LPS}}
+\newcommand{\sneps}{{SN}e{PS}}
+
+% Slides for SNaLPS presentation Nov. 10.
+% Done in beamer
+\title{\snalps}
+\author{Andy, Yana, Roelant, Mike, \& Paul}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ;;;;;
+% (Andy)
+% - Title: Textual Entailment with SNePS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\thispagestyle{empty}
+	
+ 	\titlepage
+\end{frame}
+
+\begin{frame}
+	\thispagestyle{empty}
+	%\frametitle{\slshape Presentation Overview}
+	\frametitle{Presentation Overview}
+
+	\tableofcontents
+\end{frame}
+
+\section{Goals}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ;;;;;
+% (Andy)
+% - Goals:
+%        1) RTE using Sfy and SNePS
+%                - Solve problem
+%        2) Implement Sfy
+%                - Make modular
+%                - Add other parsers
+%                - Alignment with SNePS case frames
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{\rte}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ;;; 1) RTE
+% (Yana/Roelant)
+% - RTE: What is it?
+%        - What is the problem
+%        - Show example sentences
+%        - What should be reasoned from them
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{\rte:  What is it?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (Mike)
+% - RTE with SNePS        
+%        - How can SNePS help?
+%        - How to reason with SNePS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{{\rte} with {\sneps}}
+
+\section{Sfy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (Paul)
+% ;;; 2) Sfy
+% - Putting natural language into SNePS
+%        - Introduce Sfy
+%        - Flow chart
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Putting natural language into SNePS}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - Sfy Implementation
+%        - RTE package
+%                - (extractPairs)
+%                - (runRTE)
+%        - Sfy package
+%                - (parse)
+%                - (normalize)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Sfy Implementation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - (runRTE)
+%        - explain function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - (parse)
+%        - explain function
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - (normalize)
+%        - explain function
+%        - explain what this might be
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Demo/Walk-through}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% - Demo/Walk-through
+%        - Show mrs representation of t-h pair
+%        - Demo each step of the RTE process above
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
