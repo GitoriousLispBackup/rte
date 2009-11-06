@@ -11,9 +11,19 @@
 ;;;;
 ;;  Define some variables we may need later
 ;;;;
-(defvar *sfy-grammar-script* 
-  "/home/lingrad/pmheider/research/snalps/grammar_scripts/general_script.lisp")
+(setf username (car (excl.osi:command-output "whoami")))
 
+(defvar *sfy-grammar-scripts*
+  "/home/lingrad/pmheider/research/snalps/grammar_scripts/")
+
+(let ((script-name (format nil 
+			   "~A~A.lisp"
+			   *sfy-grammar-scripts*
+			   username)))
+  (if (not (probe-file script-name))
+      (format t "Make a copy of general_script.lisp with your username~%")
+    (defvar *sfy-grammar-script* script-name)))
+ 
 ;;;;
 ;;  Pre-load Sfy
 ;;;;
