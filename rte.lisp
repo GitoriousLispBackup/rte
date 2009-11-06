@@ -8,7 +8,20 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;
+;;  Define some variables we may need later
+;;;;
+(defvar *sfy-grammar-script* 
+  "/home/lingrad/pmheider/research/snalps/grammar_scripts/general_script.lisp")
+
+;;;;
+;;  Pre-load Sfy
+;;;;
+(if (not (find-package 'sfy))
+    (load *sfy-grammar-script*))
+
 ;; Sax XML parser from Allegro.
+
 (in-package :cl-user)
 (require :sax)
 (use-package :net.xml.sax)
@@ -32,9 +45,10 @@
   ; length  ;; (LONG|SHORT) #REQUIRED 
   ; t        ;; (#PCDATA)
   ; h ;; (#PCDATA)
+
   (multiple-value-bind (success parser)
-      (sax-parse-file dataset-filename :class 'rte-sax-parser)
-    (pairs parser)))
+		       (sax-parse-file dataset-filename :class 'rte-sax-parser)
+		       (pairs parser)))
 
 (defun aval (key lst)
   "Get the value associated with the string KEY in association list LST."
@@ -73,53 +87,54 @@
    ((string= qname "t") (setf (current-append parser) nil))
    ((string= qname "h") (setf (current-append parser) nil))))
 
-;; (defun main ()
+(defun main ()
 
-;;   (let (t-h-pairs (extract-pairs))
+  (let (t-h-pairs (extract-pairs))
 
-;;     (loop for t-h-pair in t-h-pairs
-;; 	  do
+    (loop for t-h-pair in t-h-pairs
+ 	  do
 
-;; 	  ;; Formatting based on data/RTE_dev.dtd
-;; 	  (let ((id (car t-h-pair))                 ;; CDATA #REQUIRED
-;; 		(entailment (car (cdr t-h-pair)))   ;; (YES|NO) #REQUIRED
-;; 		(task (car (cdr (cdr t-h-pair))))   ;; (IR|IE|QA|SUM) #REQUIRED
-;; 		(length 
-;; 		 (car (cdr (cdr (cdr t-h-pair)))))  ;; (LONG|SHORT) #REQUIRED 
-;; 		(t 
-;; 		 (car (cdr (cdr (cdr (cdr t-h-pair))))))         ;; (#PCDATA)
-;; 		(h (car (cdr (cdr (cdr (cdr (cdr t-h-pair))))))) ;; (#PCDATA)
-;; 		)
+	  ;;  Formatting based on data/RTE_dev.dtd
+	  ;;;; TODO - turn this into destructuring-bind
+ 	  (let ((id (car t-h-pair))                 ;; CDATA #REQUIRED
+ 		(entailment (car (cdr t-h-pair)))   ;; (YES|NO) #REQUIRED
+ 		(task (car (cdr (cdr t-h-pair))))   ;; (IR|IE|QA|SUM) #REQUIRED
+ 		(length 
+ 		 (car (cdr (cdr (cdr t-h-pair)))))  ;; (LONG|SHORT) #REQUIRED 
+ 		(text 
+ 		 (car (cdr (cdr (cdr (cdr t-h-pair))))))       ;; (#PCDATA)
+ 		(hypothesis 
+		 (car (cdr (cdr (cdr (cdr (cdr t-h-pair))))))) ;; (#PCDATA)
+ 		)
 
-;; 	    ;; Deal with the text
-;; 	    (let* ((lkb-frames (sfy::parse t 'lkb))
-;; 		   (native-lkb-frames (sfy::nativize lkb-frames)))
+	    ;; Deal with the text
+	    ;;;; TODO - what happens when there is no parse?
+ 	    (let* ((lkb-frames (sfy::parse t 'lkb))
+ 		   (native-lkb-frames (sfy::nativize lkb-frames)))
 
-;; 		(loop for native-lkb-frame in native-lkb-frames
-;; 		      do
+	      (loop for native-lkb-frame in native-lkb-frames
+		    do
 
-;; 		      (sneps::tell (format nil "~A!" native-lkb-frame))
+		    (sneps::tell (format nil "~A!" native-lkb-frame))
 
-;; 		      )
-;; 		) ;; Done with the text
+		    )
+	      ) ;; Done with the text
 
+ 	    ;; Deal with the hypothesis
+ 	    (let* ((lkb-frames (sfy::parse h 'lkb))
+ 		   (native-lkb-frames (sfy::nativize lkb-frames)))
 
-;; 	    ;; Deal with the hypothesis
-;; 	    (let* ((lkb-frames (sfy::parse h 'lkb))
-;; 		   (native-lkb-frames (sfy::nativize lkb-frames)))
-
-;; 		(loop for native-lkb-frame in native-lkb-frames
-;; 		      do
+	      (loop for native-lkb-frame in native-lkb-frames
+		    do
 
 ;; 		      (sneps::??? (format nil "~A" native-lkb-frame))
 
-;; 		      )
+		    )
 		
-;; 		) ;; Done with the hypothesis
+	      ) ;; Done with the hypothesis
 
+ 	    ) ;; Done with a particular t-h pair's LET 
 
-;; 	    ) ;; Done with a particular t-h pair's LET 
-
-;; 	  );; Done looping through the t-h pairs
+ 	  );; Done looping through the t-h pairs
     
-;;     ))
+    ))
